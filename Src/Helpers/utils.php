@@ -13,7 +13,7 @@ use Confetti\Foundation\Helpers\ContentStore;
  */
 function newRoot(RootComponent $target, int $trace = 0): RootComponent
 {
-    $location = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[$trace];
+    $location = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, $trace + 1)[$trace];
     $as       = $location['file'] . ':' . $location['line'];
 
     $model = $target->newRoot(
