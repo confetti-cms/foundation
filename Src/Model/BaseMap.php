@@ -8,6 +8,7 @@ use Confetti\Foundation\Helpers\ComponentEntity;
 use Confetti\Foundation\Helpers\ComponentStandard;
 use Confetti\Foundation\Helpers\ContentStore;
 use Confetti\Foundation\Helpers\DeveloperActionRequiredException;
+use RuntimeException;
 
 abstract class BaseMap
 {
@@ -27,7 +28,12 @@ abstract class BaseMap
         }
     }
 
-    abstract public static function getComponentKey(): string;
+    public static function getComponentKey(): string
+    {
+        // This method should be overridden in the child class.
+        // We can't make this method abstract since we need it in getParamsForNewQuery().
+        throw new RuntimeException("The method getComponentKey() is not implemented in the child class.");
+    }
 
     abstract public function getComponent(): ComponentEntity;
 
@@ -88,7 +94,7 @@ abstract class BaseMap
         // 1. Create a file with ->list('blogs')->get()
         // 2. Use ->blogs()->get() in another file.
         // 3. Remove ->list('blogs')->get()
-        throw new \RuntimeException("No method list() found to get children of {$this->getId()}. Please define list with the method `list('{$this->parentContentId}')`.");
+        throw new RuntimeException("No method list() found to get children of {$this->getId()}. Please define list with the method `list('{$this->parentContentId}')`.");
     }
 
     public function getParentId(): string

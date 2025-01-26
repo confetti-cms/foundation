@@ -94,7 +94,11 @@ abstract class ComponentStandard
     {
     }
 
-    public static function query(): ListComponent
+    /**
+     * This method will return the query class. When it is a list,
+     * it will return the query class that extends ListComponent.
+     */
+    public static function query(): mixed
     {
         throw new RuntimeException('This method `query` should be overridden in the child class.');
     }
