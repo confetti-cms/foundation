@@ -9,7 +9,6 @@ class RawService implements RenderInterface
     // All file extensions that are supported by the raw service
     public const RAW_FILE_EXTENSIONS = [
         'css'         => 'text/css',
-        'csv'         => 'text/csv',
         'eot'         => 'application/vnd.ms-fontobject',
         'gif'         => 'image/gif',
         'htm'         => 'text/html',
@@ -18,13 +17,11 @@ class RawService implements RenderInterface
         'jpeg'        => 'image/jpeg',
         'jpg'         => 'image/jpeg',
         'js'          => 'application/javascript',
-        'json'        => 'application/json',
         'mjs'         => 'application/javascript',
         'pdf'         => 'application/pdf',
         'png'         => 'image/png',
         'svg'         => 'image/svg+xml',
         'ttf'         => 'application/font-sfnt',
-        'txt'         => 'text/plain',
         'webmanifest' => 'application/manifest+json',
         'webp'        => 'image/webp',
         'woff'        => 'application/font-woff',

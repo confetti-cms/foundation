@@ -44,15 +44,12 @@ readonly class ComponentEntity
             return null;
         }
 
-        // If no parameter is given, and no parameter is given, and the data is an array,
-        // the value is not a value (for example, an boolean or an integer). In that case,
-        // we use are assumed that the parameter name is the same as the method name.
-        if ($parameter === null && is_array($data) && array_key_exists($method, $data)) {
-            return $data[$method] ?? null;
+        if ($parameter === null) {
+            return $data;
         }
 
         // Search with parameter
-        $parameters = explode('.', $parameter ?? '');
+        $parameters = explode('.', $parameter);
         foreach ($parameters as $parameter) {
             if (isset($data[$parameter])) {
                 $data = $data[$parameter];
