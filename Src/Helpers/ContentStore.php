@@ -179,6 +179,11 @@ class ContentStore
         $this->queryBuilder->appendWhere($key, $operator, $value);
     }
 
+    public function getWhere(): array
+    {
+        return $this->queryBuilder->getWhere();
+    }
+
     public function appendOrderBy(string $key, string $direction): void
     {
         $this->queryBuilder->appendOrderBy($key, $direction);

@@ -125,6 +125,11 @@ class QueryBuilder
         return $this;
     }
 
+    public function getWhere(): array
+    {
+        return $this->query['where'] ?? [];
+    }
+
     public function appendOrderBy(string $key, string $direction = 'ascending'): self
     {
         $this->query['order_by'][] = [
