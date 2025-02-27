@@ -46,26 +46,11 @@ class Kernel
             http_response_code(404);
             $this->body = $e->getMessage();
         } catch (\Throwable|\TypeError|\ValueError $e) {
-            $envKey = $_ENV['APP_STAGE'] ?? throw new \RuntimeException("Environment stage is not set. (Missing APP_STAGE)");
-            switch (true) {
-                // Error in blade template
-                case str_contains($e->getTrace()[0]['file'] ?? '', '.bladec'):
-                    $render = (new RenderService());
-                    echo $render->renderLocalView('website.layouts.exception', ['exception' => $e]);
-                    http_response_code(500);
-                    exit(1);
-                default:
-                    if ($envKey === 'development') {
-                        echo '<pre>';
-                        print_r($e->getMessage());
-                        echo '</pre>';
-                        echo '<pre>';
-                        print_r($e->getTraceAsString());
-                        echo '</pre>';
-                    }
-                    http_response_code(500);
-            }
-
+            $stage = $_ENV['APP_STAGE'] ?? throw new \RuntimeException("Environment stage is not set. (Missing APP_STAGE)");
+            $render = (new RenderService());
+            echo $render->renderLocalView('website.layouts.exception', ['exception' => $e, 'env' => $stage]);
+            http_response_code(500);
+            exit(1);
         }
         $this->printResponse();
     }
