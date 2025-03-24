@@ -13,6 +13,13 @@ class Kernel
 {
     private string $body = '';
 
+    private string $uri;
+
+    public function __construct()
+    {
+        $this->uri = $_SERVER['REQUEST_URI'] ?? '/';
+    }
+
     public function setEnvironmentSettings(): void
     {
         $envKey = $_ENV['APP_STAGE'] ?? throw new \RuntimeException("Environment stage is not set. (Missing APP_STAGE)");
@@ -58,8 +65,17 @@ class Kernel
     // Print response
     public function printResponse(): void
     {
-        // Print the body and exit 0
+        // Enable Gzip only for HTML, JS, MJS, and CSS
+        if ($this->shouldGzipResponse()) {
+            if (!ob_start("ob_gzhandler")) {
+                ob_start();
+            }
+        } else {
+            ob_start();
+        }
+
         echo $this->body;
+        ob_end_flush(); // Flush output
         exit(0);
     }
 
@@ -79,5 +95,16 @@ class Kernel
 
             throw new ErrorException($message, 0, $severity, $filename, $line);
         });
+    }
+
+    private function shouldGzipResponse(): bool
+    {
+        // Extract file extension from the URI
+        $extension = pathinfo(parse_url($this->uri, PHP_URL_PATH), PATHINFO_EXTENSION);
+
+        // List of file types that should be gzipped
+        $gzipExtensions = ['html', 'js', 'mjs', 'css'];
+
+        return in_array($extension, $gzipExtensions, true);
     }
 }
