@@ -61,6 +61,9 @@ class RawService implements RenderInterface
             $contentType = $this->getContentType($uri);
             // Set the content type header
             header('Content-Type: ' . $contentType);
+            // Set the cache control header, so the browser caches the file for 30 days
+            header('Cache-Control: public, no-transform');
+            header('Expires: ' . gmdate('D, d M Y H:i:s', time() + (30 * 86.400)) . ' GMT');
             return $content;
         }
         // set status of response
