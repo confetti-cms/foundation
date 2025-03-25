@@ -22,7 +22,7 @@ class Kernel
 
     public function setEnvironmentSettings(): void
     {
-        $envKey = $_ENV['APP_STAGE'] ?? throw new \RuntimeException("Environment stage is not set. (Missing APP_STAGE)");
+        $envKey = config('stage') ?? throw new \RuntimeException("Environment stage is not set. (Missing APP_STAGE)");
         try {
             $content = file_get_contents(RenderService::CONFIG_FILE_PATH);
             $config = Json5Decoder::decode($content, true, 512, JSON_THROW_ON_ERROR);
@@ -53,7 +53,7 @@ class Kernel
             http_response_code(404);
             $this->body = $e->getMessage();
         } catch (\Throwable|\TypeError|\ValueError $e) {
-            $stage = $_ENV['APP_STAGE'] ?? throw new \RuntimeException("Environment stage is not set. (Missing APP_STAGE)");
+            $stage = config('stage') ?? throw new \RuntimeException("Environment stage is not set. (Missing APP_STAGE)");
             $render = (new RenderService());
             echo $render->renderLocalView('website.layouts.exception', ['exception' => $e, 'env' => $stage]);
             http_response_code(500);

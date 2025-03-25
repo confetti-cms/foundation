@@ -129,7 +129,7 @@ function slugId($id) {
 
 function getServiceApi(): string
 {
-    return 'http://' . request()->host() . '/conf_api';
+    return request()->scheme() . '://' . request()->host() . '/conf_api';
 }
 
 function envConfig(string $key, mixed $default = null)
