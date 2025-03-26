@@ -25,7 +25,7 @@ class ContentStore
     public function __construct(string $from, string $as, bool $putInNewLevel = false)
     {
         if (self::$canFake === null) {
-            self::$canFake = envConfig('options.when_no_data_is_saved_show_fake_data', false);
+            self::$canFake = config('environment.options.when_no_data_is_saved_show_fake_data', false);
         }
 
         // In the root, we want to select general data.

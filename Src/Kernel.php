@@ -22,12 +22,12 @@ class Kernel
 
     public function setEnvironmentSettings(): void
     {
-        $envKey = config('stage') ?? throw new \RuntimeException("Environment stage is not set. (Missing APP_STAGE)");
+        $envKey = config('environment.stage') ?? throw new \RuntimeException("Config 'environments[*].stage' not found in config.json5.");
         try {
             $content = file_get_contents(RenderService::CONFIG_FILE_PATH);
             $config = Json5Decoder::decode($content, true, 512, JSON_THROW_ON_ERROR);
         } catch (\JsonException $e) {
-            throw new \RuntimeException("Failed to parse 'app_config.json5': " . $e->getMessage());
+            throw new \RuntimeException("Failed to parse 'config.json5': " . $e->getMessage());
         }
         $envConfig = null;
         foreach ($config['environments'] as $envConfig) {
@@ -36,9 +36,8 @@ class Kernel
             }
         }
         if ($envConfig === null) {
-            throw new \RuntimeException("Environment '$envKey' not found in 'app_config.json5'.");
+            throw new \RuntimeException('{"environment":{"stage": "' . $envKey . '"}} not found in \'config.json5\'.');
         }
-        $_ENV['ENV_CONFIG'] = $envConfig;
     }
 
     public function run(): void
@@ -53,7 +52,7 @@ class Kernel
             http_response_code(404);
             $this->body = $e->getMessage();
         } catch (\Throwable|\TypeError|\ValueError $e) {
-            $stage = config('stage') ?? throw new \RuntimeException("Environment stage is not set. (Missing APP_STAGE)");
+            $stage = config('environment.stage') ?? throw new \RuntimeException("Config 'environments[*].stage' is not set.");
             $render = (new RenderService());
             echo $render->renderLocalView('website.layouts.exception', ['exception' => $e, 'env' => $stage]);
             http_response_code(500);
