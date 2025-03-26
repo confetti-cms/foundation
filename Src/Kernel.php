@@ -52,7 +52,7 @@ class Kernel
             http_response_code(404);
             $this->body = $e->getMessage();
         } catch (\Throwable|\TypeError|\ValueError $e) {
-            $stage = config('environment.stage') ?? throw new \RuntimeException("Config 'environments[*].stage' is not set.");
+            $stage = config('environment.stage') ?? throw new \RuntimeException("Can't get 'environments[*].stage' from config.json5.");
             $render = (new RenderService());
             echo $render->renderLocalView('website.layouts.exception', ['exception' => $e, 'env' => $stage]);
             http_response_code(500);
