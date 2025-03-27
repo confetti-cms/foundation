@@ -11,7 +11,7 @@ class Request
      */
     public function scheme(): string
     {
-        return $_SERVER['REQUEST_SCHEME'];
+        return config('environment.local') ? 'http' : 'https';
     }
 
     /**

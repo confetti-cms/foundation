@@ -65,7 +65,7 @@ function extendModel(\Confetti\Parser\Components\Map|\Confetti\Foundation\Contra
  */
 function config(string $key, mixed $default = null): mixed
 {
-    $config = json_decode($_ENV['APP_CONFIG'], flags: JSON_THROW_ON_ERROR);
+    $config = json_decode($_ENV['APP_CONFIG']);
 
     /**
      * This part is where the magic happens! It fetches the value from the config array.
