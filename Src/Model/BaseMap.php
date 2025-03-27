@@ -35,6 +35,11 @@ abstract class BaseMap
         throw new RuntimeException("The method getComponentKey() is not implemented in the child class.");
     }
 
+    public function __get(string $name): void
+    {
+        throw new \RuntimeException("Model ->{$name}(...) not found. Create a model with `->...('{$name}')`");
+    }
+
     abstract public function getComponent(): ComponentEntity;
 
     public static function getViewAdminPreview(): string
