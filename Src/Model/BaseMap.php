@@ -68,7 +68,6 @@ abstract class BaseMap
         return $this->contentStore->findOneData($this->parentContentId, '.');
     }
 
-
     /**
      * @deprecated check if this is really needed
      * @internal This method is not part of the public API and should not be used.

@@ -137,6 +137,26 @@ class BladeOne extends \eftec\bladeone\BladeOne
     }
 
     /**
+     * Compile the auth statements into valid PHP.
+     *
+     * @param null $expression
+     * @return string
+     */
+    protected function compileAuth($expression = null): string
+    {
+        if ($expression === null) {
+            return $this->phpTag . 'if(request()->cookie("access_token")): ?>';
+        }
+
+        $permission = $this->stripParentheses($expression);
+        if ($permission === '') {
+            return $this->phpTag . 'if(request()->cookie("access_token")): ?>';
+        }
+
+        return $this->phpTag . "if(request()->cookie(\"access_token\") && \$this->currentRole==$permission): ?>";
+    }
+
+    /**
      * Get the string contents of a push section.
      *
      * @param string $section
