@@ -63,7 +63,7 @@ abstract class BaseMap
      * a list item, we use this value to store the order of the list.
      * @return mixed
      */
-    public function getValue(): mixed
+    public function get(): mixed
     {
         return $this->contentStore->findOneData($this->parentContentId, '.');
     }
