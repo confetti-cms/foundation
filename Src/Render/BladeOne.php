@@ -109,12 +109,12 @@ class BladeOne extends \eftec\bladeone\BladeOne
     /**
      * Compile the Username statements into valid PHP.
      */
-    public function compileUsername(): string
+    public function compileUsername(): ?string
     {
         if (empty($this->currentUserObject)) {
             $this->loadPermissions();
         }
-        return $this->currentUserObject->username;
+        return $this->currentUserObject?->username ?? null;
     }
 
     /**
