@@ -111,7 +111,7 @@ class BladeOne extends \eftec\bladeone\BladeOne
      *
      * @return User
      */
-    public function compileUser(): User
+    public function compileCurrentUser(): User
     {
         if (empty($this->currentUserObject)) {
             $this->loadPermissions();
