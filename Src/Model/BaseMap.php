@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Confetti\Foundation\Model;
+namespace ConfettiCms\Foundation\Model;
 
-use Confetti\Foundation\Helpers\ComponentEntity;
-use Confetti\Foundation\Helpers\ComponentStandard;
-use Confetti\Foundation\Helpers\ContentStore;
-use Confetti\Foundation\Helpers\DeveloperActionRequiredException;
+use ConfettiCms\Foundation\Helpers\ComponentEntity;
+use ConfettiCms\Foundation\Helpers\ComponentStandard;
+use ConfettiCms\Foundation\Helpers\ContentStore;
+use ConfettiCms\Foundation\Helpers\DeveloperActionRequiredException;
 use RuntimeException;
 
 abstract class BaseMap

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Confetti\Foundation\Contracts;
+namespace ConfettiCms\Foundation\Contracts;
 
 interface SelectFileInterface
 {

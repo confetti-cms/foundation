@@ -1,6 +1,6 @@
 <?php
 
-namespace Confetti\Foundation;
+namespace ConfettiCms\Foundation;
 
 class User
 {

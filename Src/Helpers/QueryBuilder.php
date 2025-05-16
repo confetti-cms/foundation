@@ -1,6 +1,6 @@
 <?php
 
-namespace Confetti\Foundation\Helpers;
+namespace ConfettiCms\Foundation\Helpers;
 
 class QueryBuilder
 {

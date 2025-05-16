@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Confetti\Foundation\Helpers;
+namespace ConfettiCms\Foundation\Helpers;
 
 class ContentStore
 {
@@ -225,7 +225,7 @@ class ContentStore
             return null;
         }
         if (str_ends_with($relativeId, '-')) {
-            return $this->findPointerData(\Confetti\Foundation\Helpers\ComponentStandard::mergeIds($parentId, $relativeId));
+            return $this->findPointerData(\ConfettiCms\Foundation\Helpers\ComponentStandard::mergeIds($parentId, $relativeId));
         }
         return $this->findSelectedData($relativeId);
     }

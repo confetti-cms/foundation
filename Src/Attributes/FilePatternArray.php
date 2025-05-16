@@ -1,6 +1,6 @@
 <?php
 
-namespace Confetti\Foundation\Attributes;
+namespace ConfettiCms\Foundation\Attributes;
 
 #[\Attribute] class FilePatternArray
 {

@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Confetti\\Foundation\\": "Src"
+            "ConfettiCms\\Foundation\\": "Src"
         }
     }
 }

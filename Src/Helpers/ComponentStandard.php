@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Confetti\Foundation\Helpers;
+namespace ConfettiCms\Foundation\Helpers;
 
 
 use App\Components\ListComponent;
@@ -178,7 +178,7 @@ abstract class ComponentStandard
 
     /**
      * @param string[] $ids
-     * @return string[]|Map[]|ComponentStandard[]|\Confetti\Foundation\Helpers\DeveloperActionRequiredException
+     * @return string[]|Map[]|ComponentStandard[]|\ConfettiCms\Foundation\Helpers\DeveloperActionRequiredException
      */
     public static function componentClassNamesByIds(array $ids, ContentStore $store): array|DeveloperActionRequiredException
     {

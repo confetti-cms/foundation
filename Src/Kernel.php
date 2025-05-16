@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Confetti\Foundation;
+namespace ConfettiCms\Foundation;
 
-use Confetti\Foundation\Exceptions\FileNotFoundException;
-use Confetti\Foundation\Render\RenderService;
+use ConfettiCms\Foundation\Exceptions\FileNotFoundException;
+use ConfettiCms\Foundation\Render\RenderService;
 use ColinODell\Json5\Json5Decoder;
 use ErrorException;
 
