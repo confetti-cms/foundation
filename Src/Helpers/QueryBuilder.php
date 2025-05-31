@@ -35,7 +35,7 @@ class QueryBuilder
         static $nr = 0;
         $nr++;
 
-        $response = $client->get('confetti-cms__content/contents', [
+        $response = $client->get('confetti-cms__db/contents', [
             'accept' => 'application/json',
         ], $this->getFullQuery());
 
