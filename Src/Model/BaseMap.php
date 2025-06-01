@@ -89,7 +89,7 @@ abstract class BaseMap
     }
 
     /**
-     * @return \Confetti\Parser\Components\Map[]|\App\Components\ListComponent[]
+     * @return \Confetti\Parser\Components\Map[]|\ConfettiCms\List\ListComponent[]
      */
     public function getChildren(): array
     {
