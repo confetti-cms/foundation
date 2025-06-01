@@ -7,7 +7,7 @@ namespace ConfettiCms\Foundation\Contracts;
 interface SelectFileInterface
 {
     /**
-     * @return \Confetti\Parser\Components\Map[]
+     * @return \ConfettiCms\Parser\Components\Map[]
      */
     public function getOptions(): array;
 }

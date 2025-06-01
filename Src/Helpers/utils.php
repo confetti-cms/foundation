@@ -1,7 +1,7 @@
 <?php /** @noinspection ALL */
 
 use App\Components\RootComponent;
-use Confetti\Parser\Components\Map;
+use ConfettiCms\Parser\Components\Map;
 use ConfettiCms\Foundation\Helpers\Request;
 use ConfettiCms\Foundation\Helpers\ComponentStandard;
 use ConfettiCms\Foundation\Helpers\ContentStore;
@@ -42,7 +42,7 @@ function modelById(string $contentId): Map|ComponentStandard
 /**
  * You can use this in situations where you don't know what the parent classes are.
  */
-function extendModel(\Confetti\Parser\Components\Map|\ConfettiCms\Foundation\Contracts\SelectModelInterface &$component): Map
+function extendModel(\ConfettiCms\Parser\Components\Map|\ConfettiCms\Foundation\Contracts\SelectModelInterface &$component): Map
 {
     if ($component instanceof \ConfettiCms\Foundation\Contracts\SelectModelInterface) {
         return $component->getSelected();

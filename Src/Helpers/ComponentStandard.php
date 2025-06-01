@@ -7,7 +7,7 @@ namespace ConfettiCms\Foundation\Helpers;
 
 use ConfettiCms\List\ListComponent;
 use App\Components\SelectFileComponent;
-use Confetti\Parser\Components\Map;
+use ConfettiCms\Parser\Components\Map;
 use Exception;
 use JsonException;
 use RuntimeException;
@@ -206,7 +206,7 @@ abstract class ComponentStandard
     }
 
     /**
-     * @return class-string|\Confetti\Parser\Components\Map|ComponentStandard
+     * @return class-string|\ConfettiCms\Parser\Components\Map|ComponentStandard
      * @noinspection PhpDocSignatureInspection
      */
     public static function componentClassById(string $id, ContentStore $store): string|DeveloperActionRequiredException
