@@ -6,7 +6,7 @@ namespace ConfettiCms\Foundation\Helpers;
 
 
 use ConfettiCms\List\ListComponent;
-use App\Components\SelectFileComponent;
+use ConfettiCms\SelectFile\SelectFileComponent;
 use ConfettiCms\Parser\Components\Map;
 use Exception;
 use JsonException;
