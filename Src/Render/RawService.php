@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace ConfettiCms\Foundation\Render;
 
+use ConfettiCms\Foundation\Exceptions\RawFileDeniedException;
+
 class RawService implements RenderInterface
 {
     // All file extensions that are supported by the raw service
@@ -35,6 +37,9 @@ class RawService implements RenderInterface
     {
     }
 
+    /**
+     * @throws \ConfettiCms\Foundation\Exceptions\RawFileDeniedException
+     */
     public function isCapable(string $uri): bool
     {
         if ($this->pathPrefix !== null && !str_starts_with($uri, $this->pathPrefix . '/')) {
@@ -43,7 +48,17 @@ class RawService implements RenderInterface
         $extensions       = array_keys(self::RAW_FILE_EXTENSIONS);
         $currentExtension = $this->getCurrentExtension($uri);
 
-        return in_array($currentExtension, $extensions, true);
+        $extensionMatches = in_array($currentExtension, $extensions, true);
+        if (!$extensionMatches) {
+            return false;
+        }
+
+        // If the URI does not contain '/public/', the use is not allowed to access a raw file
+        if ($this->pathPrefix === null && !str_contains($uri, '/public/')) {
+            throw new RawFileDeniedException('You are not allowed to access file without public in the path.');
+        }
+
+        return true;
     }
 
     /**

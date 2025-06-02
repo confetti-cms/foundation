@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ConfettiCms\Foundation;
 
 use ConfettiCms\Foundation\Exceptions\FileNotFoundException;
+use ConfettiCms\Foundation\Exceptions\RawFileDeniedException;
 use ConfettiCms\Foundation\Render\RenderService;
 use ColinODell\Json5\Json5Decoder;
 use ErrorException;
@@ -50,6 +51,9 @@ class Kernel
             $this->body = $render->renderUrl($uri);
         } catch (FileNotFoundException $e) {
             http_response_code(404);
+            $this->body = $e->getMessage();
+        } catch (RawFileDeniedException $e) {
+            http_response_code(403);
             $this->body = $e->getMessage();
         } catch (\Throwable|\TypeError|\ValueError $e) {
             $stage = config('environment.stage') ?? throw new \RuntimeException("Can't get 'environments[*].stage' from config.json5.");
