@@ -54,6 +54,25 @@ class BladeOne extends \eftec\bladeone\BladeOne
         });
     }
 
+    /**
+     * Macro of function run. Runchild backups the operations, so it is ideal to run as a child process without
+     * intervining with other processes.
+     *
+     * @param       $view
+     * @param array $variables
+     * @return string
+     * @throws Exception
+     */
+    public function runChild($view, $variables = []): string
+    {
+        // Trim /src from the beginning of the view name
+        // BladeOne already prefixes the view with the template path
+        if (str_starts_with($view, '/src/')) {
+            $view = substr($view, 4);
+        }
+        return parent::runChild($view, $variables);
+    }
+
     protected function loadPermissions(): void
     {
         if (empty($_COOKIE['access_token'])) {
